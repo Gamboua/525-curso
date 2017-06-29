@@ -1,0 +1,12 @@
+---
+# tasks file for puppet-prepare
+- name: Atualizar o modulo do Puppet Master
+  git:
+    repo: "{{ repo }}"
+    dest: /etc/puppet/modules/{{ modulename }}
+    key_file: /etc/keys/key
+
+- name: clean-up certificates
+  command: puppet cert clean {{ certificatename }}.dexter.com.br
+  when: certificatename is defined
+  ignore_errors: yes

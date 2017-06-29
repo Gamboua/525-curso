@@ -1,0 +1,22 @@
+---
+- name: verificar a existencia do container
+  command: docker inspect web
+  register: container
+  ignore_errors: yes
+
+- name: remover o container caso ela exista
+  command: docker rm -f web
+  when: container.rc == 0
+
+- name: realizar a criação do container do docker
+  command:  docker run -dit --name web --hostname web --add-host devops.dexter.com.br:192.168.200.100 -p 80:80 deploy /bin/bash
+
+- name: habilitando agent do puppet
+  command: docker exec web puppet agent --enable
+
+- name: rodar o agent d puppet no novo container
+  command: docker exec web puppet agent -t --server devops.dexter.com.br
+  ignore_errors: yes
+
+- name: testar se a configuração foi aplicada com sucesso
+  command: docker exec web service apache2 status
