@@ -1,6 +1,6 @@
 ---
 # vars file for gitlab
-- packages:
+packages:
   - curl
   - openssh-server
   - postfix
