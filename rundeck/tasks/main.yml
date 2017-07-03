@@ -1,10 +1,10 @@
 ---
-- name: Garantir que o jdk esteja na maquina
-  yum: name=java
-
 - name: Download do repositorio
-  command: rpm -Uvh http://repo.rundeck.org/latest.rpm
+  yum:
+    name: http://repo.rundeck.org/latest.rpm
+    state: present
 
 - name: Instalacao do rundeck
-  yum: name=rundeck state=present
-
+  yum:
+    name: {{ packages }}
+    state: present
