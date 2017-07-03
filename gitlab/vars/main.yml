@@ -1,2 +1,7 @@
 ---
 # vars file for gitlab
+- packages:
+  - curl
+  - openssh-server
+  - postfix
+  - ca-certificates

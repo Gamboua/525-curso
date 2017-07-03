@@ -1,20 +1,27 @@
 ---
 # tasks file for gitlab
-- name: Instalacao das dependencias do gitlab
-  apt: name={{ item }} update_cache=yes state=present
-  with_items:
-    - curl
-    - openssh-server
-    - postfix
-    - ca-certificates
+- name: Instalacao das dependencias do GitLab
+  apt:
+    name: {{ packages }}
+    update_cache: yes
+    state: present
 
-- name: Baixar pacote com o repositorio do gitlab
+- name: Baixar script de instalação do repositório do GitLab
   get_url:
     url: "http://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh"
     dest: /tmp/script.deb.sh
+    owner: root
+    group: root
+    mode: 0777
 
-- name: Instalacao do pacote.deb
-  command: bash /tmp/script.deb.sh
+- name: Instalação do repositório do GitLab
+  command: /tmp/script.deb.sh
 
-- name: Instalacao do gitlab
-  apt: name=gitlab-ce update_cache=yes state=present
+- name: Instalacao do GitLab
+  apt:
+    name: gitlab-ce
+    update_cache: yes
+    state: present
+
+- name: Configuração do GitLab
+  command: gitlab-ctl reconfigure

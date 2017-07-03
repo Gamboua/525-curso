@@ -1,4 +1,6 @@
 ---
+
+# Presente na versão 2.1 - Use docker caso contrário
 - name: Instalação de Container "web" com o Puppet-Agent no Docker
   docker_container:
     name: web
