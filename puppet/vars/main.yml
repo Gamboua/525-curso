@@ -3,6 +3,8 @@
 packages:
   - openssl
   - ntp
+
+puppet:
   - puppet-lint
   - puppet
   - puppet-common
