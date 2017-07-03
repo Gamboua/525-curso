@@ -6,3 +6,4 @@ packages:
   - ca-certificates
   - curl
   - software-properties-common
+  - python-docker
