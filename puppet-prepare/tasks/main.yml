@@ -6,7 +6,7 @@
     dest: /etc/puppet/modules/{{ modulename }}
     key_file: /etc/keys/key
 
-- name: clean-up certificates
+- name: Limpar certificados do Puppet Master
   command: puppet cert clean {{ certificatename }}.dexter.com.br
   when: certificatename is defined
   ignore_errors: yes

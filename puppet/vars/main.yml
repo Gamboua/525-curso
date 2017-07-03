@@ -1,2 +1,8 @@
 ---
 # vars file for puppet
+packages:
+  - openssl
+  - ntp
+  - puppet-lint
+  - puppet
+  - puppet-common
