@@ -2,17 +2,17 @@
 # tasks file for puppet
 - name: Instalacao das dependencias do Puppet
   apt:
-    name: {{ packages }}
+    name: "{{ packages }}"
     update_cache: yes
     state: present
 
 - name: Download do Repositório do Puppet
   apt:
-    deb: https://apt.puppetlabs.com/puppetlabs-release-pc1-{{ ansible_distribution_release }}.deb
+    deb: "https://apt.puppetlabs.com/puppetlabs-release-pc1-{{ ansible_distribution_release }}.deb"
     state: present
 
 - name: Instalação dos pacotes do Puppet
   apt:
-    name: {{ puppet }}
+    name: "{{ puppet }}"
     update_cache: yes
     state: present
