@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+{% endblock %}
+
+{% block title %}Images Index{% endblock %}
+
+{% block content %}
+<section class="content-header">
+    <h1>
+        {{ image['name'] }}
+        <small>Docker Registry Admin</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+        <li><a href="/images"><i class="fa fa-ship"></i>Images</a></li>
+        <li class="active">Show Images</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="nav-tabs-custom">
+            <div class="box-body">
+                <table id="images"
+                       class="table table-bordered table-striped dataTable"
+                       role="grid"
+                       aria-describedby="images_info">
+                    <thead>
+                        <th>#</th>
+                        <th>Image Name</th>
+                        <th>Options</th>
+                    </thead>
+                    <tbody>
+                        {% for t in image['tags'] %}
+                            <tr>
+                                <td>{{ image['tags'].index(t) }}</td>
+                                <td>{{ t }}</td>
+                                <td><a href="/images/{{ image['name'] }}/{{ t }}" class="btn btn-danger btn-xs">
+                                    <i class="fa fa-trash"></i> Remove Tag
+                                </a></td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td>You have no image... such tragedy.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <th>#</th>
+                        <th>Image Name</th>
+                        <th>Options</th>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block javascript %}
+<script src="/static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/static/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+  $(function () {
+    $('#images').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true
+    });
+});
+</script>
+{% endblock %}

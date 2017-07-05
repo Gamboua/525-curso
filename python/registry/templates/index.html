@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<section class="content-header">
+    <h1>Dashboard</h1>
+    <ol class="breadcrumb">
+        <li class="active"><a href="/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-blue">
+                    <i class="ion ion-cube"></i>
+                </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Image Available</span>
+                    <span class="info-box-number">{{ images | length }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Image List</h3>
+        </div>
+        <div class="box-body">
+            <div class="table-responsive">
+                <table class="table no-margin">
+                    <thead>
+                        <th>#</th>
+                        <th>Image Name</th>
+                    </thead>
+                    <tbody>
+                        {% for i in images %}
+                            <tr>
+                                <td>{{ images.index(i) }}</td>
+                                <td><a href="/image/{{ i }}">{{ i }}</a></td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td>You have no image... such tragedy.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
