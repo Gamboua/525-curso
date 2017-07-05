@@ -1,0 +1,11 @@
+---
+# vars file for docker-registry
+package:
+  - libffi-dev
+  - libldap2-dev
+  - libsasl2-dev
+  - libssl-dev
+  - python-dev
+  - apache2
+  - python-pip
+  - libapache2-mod-wsgi
